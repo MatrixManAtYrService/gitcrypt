@@ -16,7 +16,7 @@ pip install -r requirements.txt
 If you're using [tails](https://tails.boum.org/) you might need:
 ```
 sudo apt update && sudo apt install python3-pip python3-setuptools python3-dev gcc libssl-dev
-sudo torsocks pip install -r requirements.txt
+torsocks pip install -r requirements.txt
 ```
 
 ## Usage
