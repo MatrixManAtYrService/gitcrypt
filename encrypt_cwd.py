@@ -9,11 +9,6 @@ import sys
 import os
 import re
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__))) # for sh, if extracted
-sys.path.append(os.path.join(
-                os.path.dirname(os.path.abspath(__file__)),
-                'scrypt-0.8.13')) ## for scrypt, if extracted
-
 import scrypt
 from sh import gpg, echo, sha256sum, shred, rm, touch, awk, ErrorReturnCode_2
 
@@ -117,7 +112,7 @@ def getkey(prompt='Password: '):
     step_2 = step_1
 
     print("done")
-    return step2
+    return step_2
 
 # a function for manipulating .gitignore
 def add_line_if_not_present(string, filename):

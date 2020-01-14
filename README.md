@@ -8,20 +8,15 @@ Assumes that you have [gpg](https://gnupg.org/download/) installed.
 
 ## Installing Python Dependencies
 
-### Via pip
+This is probably enough for most environments
 ```
-# register an ssh key for git to use
-# (you're on your own for this step)
-
-# clone this repo
-git clone git@github.com:MatrixManAtYrService/gitcrypt.git && cd gitcrypt
-
-# make a virtualenv and enter it
-python3 -m venv .venv
-source .venv/bin/activate
-
-# use pip to install
 pip install -r requirements.txt
+```
+
+If you're on tails, you might need:
+```
+sudo apt update && sudo apt install python3-pip python3-dev gcc libssl-dev
+sudo torsocks pip install -r requirements.txt
 ```
 
 ### From this repo

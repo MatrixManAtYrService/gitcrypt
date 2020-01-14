@@ -1,6 +1,2 @@
 .venv
 __pycache__/
-scrypt-0.8.13/**
-scrypt-0.8.13.dist-info/**
-sh-1.12.14.dist-info/**
-sh.py

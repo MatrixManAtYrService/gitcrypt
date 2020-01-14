@@ -4,10 +4,10 @@
 # not my code
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from sh import touch, gpg, echo, awk, sha256sum, ErrorReturnCode_2
 
 # my code
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from encrypt_cwd import salt, nonce_cleartext_filename, nonce_encrypted_filename, \
                         ignored_files, examine, add_line_if_not_present, getkey, yes_or_no, \
                         update_sha
