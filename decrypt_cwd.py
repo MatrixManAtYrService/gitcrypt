@@ -45,8 +45,7 @@ def main():
     to_decrypt = { y : None for y in examine(lambda x: not ignore(x), prompt="Decrypting: ") }
 
     if not to_decrypt:
-        print("Nothing to do, exiting")
-        sys.exit(2)
+        sys.exit(0)
 
     ## Prompt the user for their passphrase, use scrypt to generate a key from it
     ###
@@ -70,7 +69,7 @@ def main():
         if type(cleartext) is ErrorReturnCode_2:
             print(f"Unable to decrypt ./{nonce_encrypted_filename}, this could be a bad passphrase.")
             if not yes_or_no("Try Anyway?"):
-                exit(4)
+                sys.exit(4)
         else:
             print(f"Successfully decrypted ./{nonce_encrypted_filename}.  You're using the right passphrase for this directory.")
         print()

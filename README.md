@@ -1,6 +1,8 @@
-# gitcrypt
+# gitscrypt
 
-This is a framework for encrypting secrets and storing them in git.  It might be a bad idea altogether.  It might also be an OK idea, with bad ideas hiding inside--use it only if you understand it.
+'cause git-crypt is already the name of a very similar project, and this uses scrypt for key stretching.  It's a framework for encrypting secrets and storing them in git.  It might be a bad idea altogether.  It might also be an OK idea, with bad ideas hiding inside--use it only if you understand it.
+
+[git-crypt](https://unix.stackexchange.com/a/66331/146169) looks cool, but I was looking for something simpler.
 
 ## System Dependencies
 
@@ -53,6 +55,9 @@ You'll notice that payload.txt.asc and payload.txt.sha256 have changed.  If you 
 
 ### A few things to think about
 
-[encrypt_cwd.py](encrypt_cwd.py) contains a salt which you should regenerate if you fork this project.  Also, you should probably audit that code while you're in there (and [decrypt_cwd.py](decrypt_cwd.py) while you're at it).  I'll do my best to answer questions in the form of issues, but I won't be held responsible for data loss or compromise.
+- [encrypt_cwd.py](encrypt_cwd.py) contains a salt which you should regenerate if you fork this project.  Also, you should probably audit that code while you're in there (and [decrypt_cwd.py](decrypt_cwd.py) while you're at it).  I'll do my best to answer questions in the form of issues, but I won't be held responsible for data loss or compromise.
 
+- It's possible for your filesystem may think the encrypted files are gone, while they're still present on the disk.  If you want to leave no trace, create a ramfs and clone it there.
+
+- It's possible that your text editor may create temp files (to recover in case of a power failure, for instance) so you might want to disable those while editing decrypted files.
 
