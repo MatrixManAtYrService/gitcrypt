@@ -83,11 +83,11 @@ def main():
 
         cleartext_or_err = get_cleartext(ciphertext_filename, key)
 
-        if type(cleartext) is ErrorReturnCode_2:
+        if type(cleartext_or_err) is ErrorReturnCode_2:
             print(f"Error while decrypting {ciphertext_filename}:")
             print(cleartext_or_err)
             if not first_error:
-                first_error = err
+                first_error = cleartext_or_err
         else:
 
             with open(cleartext_filename, 'w') as file:

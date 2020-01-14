@@ -9,6 +9,7 @@ import sys
 import os
 import re
 
+from argon2 import argon2_hash as argon2
 import scrypt
 from sh import gpg, echo, sha256sum, shred, rm, touch, awk, ErrorReturnCode_2
 
@@ -103,16 +104,19 @@ def getkey(prompt='Password: '):
     p=1
     buflen=64
 
-    step_1 = base64.b64encode(scrypt.hash(passphrase, salt, N=N, r=r, p=p, buflen=buflen)).decode('utf-8')
+    step1 = base64.b64encode(scrypt.hash(passphrase, salt, N=N, r=r, p=p, buflen=buflen)).decode('utf-8')
 
     print(".", end="")
     sys.stdout.flush()
 
-    # TODO: https://argon2-cffi.readthedocs.io/en/stable/installation.html
-    step_2 = step_1
+    time=2048
+    mem=128
+    threads=2
+    buflen=128
+    step2 = base64.b64encode(argon2(step1, salt, t=time, m=mem, p=threads, buflen=buflen)).decode('utf-8')
 
-    print("done")
-    return step_2
+    print(".done")
+    return step2
 
 # a function for manipulating .gitignore
 def add_line_if_not_present(string, filename):
@@ -185,7 +189,7 @@ def main():
             if not yes_or_no("Do you want to continue?"):
                 sys.exit(3)
             else:
-                print("Ok, regenerating the ./{nonce_encrypted_filename} so you don't see this warning next time.")
+                print(f"Ok, regenerating the ./{nonce_encrypted_filename} so you don't see this warning next time.")
                 generate_nonce(key)
 
         else:
